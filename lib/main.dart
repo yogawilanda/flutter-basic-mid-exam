@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: lightTheme,
       home: BottomNavigationBarExample(),
-      // home: MediaPicker(),
+      // home: MediaPicker(), // bukan untuk tugas uts
       // home:  TabBarFormat(),
       // home: const TaskListScreen(),
       // home: const Yoga_1201222013(title: 'Welcome', nama: 'Jhon Doe'),
