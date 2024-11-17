@@ -1,11 +1,18 @@
-
 # Tugas 3 - 6 pada Pemrograman Perangkat Bergerak Flutter:
+
+Link Tugas Pengerjaan :
+
+[Github Repo](https://github.com/yogawilanda/flutter-basic-mid-exam "Contoh pengerjaan langsung ada di github yes")
+
+Link Download PDF Laporan :
+Di dalam file repo
+
 
 ## Tugas 3: Layout Part 1
 
 ### Widget
 
-**Penjelasan:** 
+**Penjelasan:**
 
 Widget adalah komponen dasar dari Flutter, yang merepresentasikan elemen visual. Ada dua tipe utama Widget:
 
@@ -14,10 +21,9 @@ Widget adalah komponen dasar dari Flutter, yang merepresentasikan elemen visual.
 
 ### Container
 
-**Penjelasan:** 
+**Penjelasan:**
 
 Container adalah kotak pembungkus untuk widget lain, dengan pengaturan seperti ukuran, warna, padding, margin, dan lainnya.
-
 
 ```dart
 Container(
