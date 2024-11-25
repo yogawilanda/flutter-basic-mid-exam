@@ -23,7 +23,6 @@ class MediaPickerState extends State<MediaPicker> {
     super.initState();
     _videoPlayerController = VideoPlayerController.asset(
       // use this for video from gallery
-      // File(_image.isEmpty ? "" : _image.last.path.toString(), 
       _imageFile == null ? "" : _imageFile!.toString(),
     );
     
