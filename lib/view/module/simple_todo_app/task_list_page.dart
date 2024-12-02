@@ -20,19 +20,25 @@ class _TaskListScreenState extends State<TaskListScreen> {
     });
   }
 
+  void _scrollToBottom() {
+    scrollController.animateTo(
+      scrollController.position.viewportDimension +
+          MediaQuery.of(context).size.height * 2,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeOut,
+    );
+  }
+
   void _addTask(String taskName) {
     final taskController = Provider.of<TaskController>(context, listen: false);
     taskController.addTask(
       taskName,
       onTaskAdded: () {
-        // scroll to bottom
-        scrollController.animateTo(
-          scrollController.position.maxScrollExtent + 100,
-          duration: const Duration(milliseconds: 600),
-          curve: Curves.easeOut,
-        );
+        _scrollToBottom();
       },
     );
+
+    taskCreateController.clear();
   }
 
   void saveTaskButtonAction() {
@@ -99,17 +105,23 @@ class _TaskListScreenState extends State<TaskListScreen> {
               children: [
                 Expanded(
                   child: TextField(
+                    autocorrect: true,
+                    enableSuggestions: true,
+                    expands: true,
                     controller: taskCreateController,
                     onEditingComplete: () {
                       final taskName = taskCreateController.text;
                       if (taskName.isNotEmpty) {
                         _addTask(taskName);
-                        taskCreateController.clear();
                       }
                     },
                     decoration: InputDecoration(
-                      hintText: 'New Task',
-                      labelText: 'Task Name',
+                      hintText: 'Task',
+                      hintStyle: TextStyle(
+                        color: Colors.grey[400],
+                      ),
+                      // labelText: 'Task Name',
+                      label: Text("Hi"),
                       prefixIcon: const Icon(Icons.task_alt),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
@@ -129,8 +141,6 @@ class _TaskListScreenState extends State<TaskListScreen> {
       ),
     );
   }
-
-  
 
   @override
   void dispose() {
