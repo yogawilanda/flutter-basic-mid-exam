@@ -1,7 +1,6 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mid_basic_exam/view/module/dashboard/spending_list.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hello_flutter/view/module/dashboard/spending_list.dart';
 
 class DashboardBanking extends StatefulWidget {
   DashboardBanking({super.key, this.username});
@@ -225,7 +224,7 @@ class _DashboardBankingState extends State<DashboardBanking> {
             ),
           ],
         ),
-        CircleAvatar(
+        const CircleAvatar(
           radius: 24,
           backgroundColor: Colors.green,
           child: Icon(

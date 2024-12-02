@@ -1,9 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter_mid_basic_exam/view/widgets/horizontal_slider.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hello_flutter/view/widgets/grid_view_placeholder.dart';
-import 'package:hello_flutter/view/widgets/horizontal_slider.dart';
 
 class Yoga_1201222013 extends StatefulWidget {
   const Yoga_1201222013(

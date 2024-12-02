@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hello_flutter/view/pages/home/homepage_view.dart';
-import 'package:hello_flutter/view/pages/home/main_app.dart';
-import 'package:hello_flutter/view/pages/menu/menu_view.dart';
+import 'package:flutter_mid_basic_exam/view/pages/home/homepage_view.dart';
+import 'package:flutter_mid_basic_exam/view/pages/home/main_app.dart';
+import 'package:flutter_mid_basic_exam/view/pages/menu/menu_view.dart';
 
 class TabBarFormatNavigation extends StatefulWidget {
   const TabBarFormatNavigation({super.key});

@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:hello_flutter/controller/task_controller.dart';
-import 'package:hello_flutter/controller/login_controller.dart';
-import 'package:hello_flutter/controller/register_controller.dart';
-import 'package:hello_flutter/controller/toko_controller.dart';
-import 'package:hello_flutter/view/module/bottom_navigation_bar_page.dart';
-import 'package:hello_flutter/view/module/simple_todo_app/task_list_page.dart';
-import 'package:hello_flutter/constants/theme.dart';
-import 'package:hello_flutter/view/module/dashboard/dashboard_banking.dart';
-import 'package:hello_flutter/view/module/dashboard/spending_detail.dart';
-import 'package:hello_flutter/view/module/toko_module/customer_shop.dart';
-import 'package:hello_flutter/view/module/image_picker/media_picker.dart';
+import 'package:flutter_mid_basic_exam/controller/task_controller.dart';
+
 import 'package:provider/provider.dart';
+
+import 'constants/theme.dart';
+import 'controller/login_controller.dart';
+import 'controller/register_controller.dart';
+import 'controller/toko_controller.dart';
+import 'view/module/simple_todo_app/task_list_page.dart';
 
 void main() {
   runApp(
@@ -48,7 +45,7 @@ class MyApp extends StatelessWidget {
       // home: BottomNavigationBarExample(),
       // home: MediaPicker(), // bukan untuk tugas uts
       // home:  TabBarFormat(),
-      home: TaskListScreen(),
+      home: const TaskListScreen(),
       // home: const Yoga_1201222013(title: 'Welcome', nama: 'Jhon Doe'),
     );
   }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hello_flutter/model/product.dart';
+import 'package:flutter_mid_basic_exam/model/product.dart';
 
 class TokoController extends ChangeNotifier {
   List<Product> searchedProducts = [];

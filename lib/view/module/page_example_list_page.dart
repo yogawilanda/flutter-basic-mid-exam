@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mid_basic_exam/view/module/bottom_navigation_bar_page.dart';
+import 'package:flutter_mid_basic_exam/view/module/notification_widget_page.dart';
+import 'package:flutter_mid_basic_exam/view/module/simple_todo_app/task_list_page.dart';
+import 'package:flutter_mid_basic_exam/view/pages/auth/login/login_view.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hello_flutter/view/pages/auth/login/login_view.dart';
-import 'package:hello_flutter/view/widgets/tab_bar_format_navigation.dart';
-import 'package:hello_flutter/view/module/bottom_navigation_bar_page.dart';
-import 'package:hello_flutter/view/module/notification_widget_page.dart';
-import 'package:hello_flutter/view/module/simple_todo_app/task_list_page.dart';
 
 class PageExampleListPage extends StatelessWidget {
   const PageExampleListPage({super.key});
@@ -162,5 +161,4 @@ class PageExampleListPage extends StatelessWidget {
           builder: (context) => page, settings: RouteSettings(name: title)),
     );
   }
-
 }

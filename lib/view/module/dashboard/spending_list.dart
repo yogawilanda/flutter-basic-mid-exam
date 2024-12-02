@@ -1,6 +1,5 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:hello_flutter/view/module/dashboard/spending_detail.dart';
+
 
 class SpendingListPage extends StatefulWidget {
   const SpendingListPage({super.key});

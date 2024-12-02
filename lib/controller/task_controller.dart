@@ -1,8 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:hello_flutter/Helper/db_helper.dart';
-import 'package:hello_flutter/Model/tasks.dart';
+import 'package:flutter_mid_basic_exam/helper/db_helper.dart';
+import 'package:flutter_mid_basic_exam/model/tasks.dart';
+
 import 'package:path_provider/path_provider.dart';
 
 class TaskController extends ChangeNotifier {

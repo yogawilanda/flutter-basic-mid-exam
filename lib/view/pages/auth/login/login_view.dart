@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hello_flutter/controller/login_controller.dart';
-import 'package:hello_flutter/view/widgets/tab_bar_format_navigation.dart';
-import 'package:hello_flutter/view/widgets/text_field_custom.dart';
+import 'package:flutter_mid_basic_exam/controller/login_controller.dart';
+import 'package:flutter_mid_basic_exam/view/widgets/text_field_custom.dart';
+
 import 'package:provider/provider.dart';
 
 class LoginView extends StatelessWidget {

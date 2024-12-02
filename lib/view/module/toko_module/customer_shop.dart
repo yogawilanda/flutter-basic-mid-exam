@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mid_basic_exam/model/product.dart';
+import 'package:flutter_mid_basic_exam/view/module/toko_module/customer_cart_page.dart';
+import 'package:flutter_mid_basic_exam/view/module/toko_module/product_details_page.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hello_flutter/model/product.dart';
-import 'package:hello_flutter/view/module/toko_module/customer_cart_page.dart';
-import 'package:hello_flutter/view/module/toko_module/product_details_page.dart';
 
 class CustomerShop extends StatefulWidget {
   const CustomerShop({super.key});
@@ -122,7 +122,8 @@ class _CustomerShopState extends State<CustomerShop> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => CustomerCartPage(listOfProductAddedToCart: addedToCartProducts),
+              builder: (context) => CustomerCartPage(
+                  listOfProductAddedToCart: addedToCartProducts),
             ),
           );
         },
