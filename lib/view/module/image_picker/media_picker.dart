@@ -12,9 +12,9 @@ class MediaPicker extends StatefulWidget {
 }
 
 class MediaPickerState extends State<MediaPicker> {
-  ImagePicker _imagePicker = ImagePicker();
+  final ImagePicker _imagePicker = ImagePicker();
 
-  List<XFile> _image = [];
+  final List<XFile> _image = [];
 
   late VideoPlayerController _videoPlayerController;
 
@@ -48,15 +48,15 @@ class MediaPickerState extends State<MediaPicker> {
   //------------------cara mas rifqy------------------
   File? _imageFile;
   Future<void> pickImageAlaMasRifqy() async {
-    final _imageFile =
+    final imageFile =
         await ImagePicker().pickImage(source: ImageSource.gallery);
 
-    if (_imageFile == null) return;
+    if (imageFile == null) return;
 
-    final imageTemporary = File(_imageFile.path);
+    final imageTemporary = File(imageFile.path);
 
     setState(() {
-      this._imageFile = imageTemporary;
+      _imageFile = imageTemporary;
     });
   }
 

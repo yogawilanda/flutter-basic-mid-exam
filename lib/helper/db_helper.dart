@@ -34,46 +34,4 @@ CREATE TABLE tasks (
     await db.execute(
         ''' CREATE TABLE users ( id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, email TEXT NOT NULL ) ''');
   }
-
-  Future<int> createTask(Task task) async {
-    final db = await instance.database;
-
-    return await db.insert(
-      'tasks',
-      task.toMap(),
-      conflictAlgorithm: ConflictAlgorithm.replace,
-    );
-  }
-
-  //read All Task
-  Future<List<Task>> readAllTask() async {
-    final db = await instance.database;
-
-    final result = await db.query('tasks');
-
-    return result.map((json) => Task.fromMap(json)).toList();
-  }
-
-  // update task
-  Future<int> updateTask(Task task) async {
-    final db = await instance.database;
-    return db.update(
-      'tasks',
-      task.toMap(),
-      where: 'taskID = ?',
-      whereArgs: [task.taskID],
-    );
-  }
-
-  // delete task
-  Future<int> deleteTask(int id) async {
-    final db = await instance.database;
-    return await db.delete(
-      'tasks',
-      where: 'taskID = ?',
-      whereArgs: [id],
-    );
-  }
-
-  Future close() async {}
 }

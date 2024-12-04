@@ -46,8 +46,8 @@ ThemeData lightTheme = ThemeData(
         fontWeight: FontWeight.bold,
       ),
     ),
-    titleMedium: TextStyle(color: primaryColor, fontWeight: FontWeight.bold),
-    titleSmall: TextStyle(color: primaryColor, fontWeight: FontWeight.bold),
+    titleMedium: const TextStyle(color: primaryColor, fontWeight: FontWeight.bold),
+    titleSmall: const TextStyle(color: primaryColor, fontWeight: FontWeight.bold),
   ),
   bottomNavigationBarTheme: const BottomNavigationBarThemeData(
     backgroundColor: secondaryColor,
@@ -57,7 +57,7 @@ ThemeData lightTheme = ThemeData(
   ),
 
   // AppBar theme
-  appBarTheme: AppBarTheme(
+  appBarTheme: const AppBarTheme(
     backgroundColor: primaryColor,
     foregroundColor: secondaryColor, // Sets the text color
     titleTextStyle: TextStyle(

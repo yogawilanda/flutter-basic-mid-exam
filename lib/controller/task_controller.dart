@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_mid_basic_exam/helper/db_helper.dart';
+import 'package:flutter_mid_basic_exam/helper/tasks_service.dart';
 import 'package:flutter_mid_basic_exam/model/tasks.dart';
 
 import 'package:path_provider/path_provider.dart';
@@ -11,7 +12,7 @@ import 'package:url_launcher/url_launcher.dart';
 // permission handler
 
 class TaskController extends ChangeNotifier {
-  final dbHelper = DBHelper.instance;
+  final TaskService dbHelper = TaskService();
   List<Task> tasks = [];
 
   Future<void> refreshTask() async {

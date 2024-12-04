@@ -60,7 +60,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
           preferredSize: const Size.fromHeight(50),
           child: Container(
             alignment: Alignment.centerRight,
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             child: IconButton.filledTonal(
               onPressed: () {
                 final controller = Provider.of<TaskController>(
@@ -76,7 +76,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
                 backgroundColor: WidgetStateProperty.all(Colors.white),
                 iconColor: WidgetStateProperty.all(Colors.green),
               ),
-              icon: Icon(
+              icon: const Icon(
                 Icons.upload,
                 // color: Colors.green,
               ),
@@ -134,7 +134,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
               children: [
                 Expanded(
                   child: TextField(
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.black,
                     ),
                     autocorrect: true,
