@@ -10,7 +10,7 @@ class Task {
       {this.taskID,
       required this.taskName,
       this.taskDescription,
-      this.isCompleted = false});
+      required this.isCompleted});
 
   // model conversion to Map
   Map<String, dynamic> toMap() {
@@ -21,7 +21,7 @@ class Task {
       'isCompleted': isCompleted ? 1 : 0,
     };
   }
-  
+
   Map<String, dynamic> toJson() {
     return {
       'taskID': taskID,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mid_basic_exam/controller/task_controller.dart';
-
+import 'package:flutter_mid_basic_exam/controller/task_controller/task_controller_libraries.dart';
+import 'package:flutter_mid_basic_exam/model/tasks.dart';
 import 'package:provider/provider.dart';
 
 class TaskListScreen extends StatefulWidget {
@@ -18,7 +18,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Provider.of<TaskController>(context, listen: false).refreshTask();
+      Provider.of<TaskController>(context, listen: false).loadTask();
     });
   }
 
@@ -33,7 +33,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
 
   void _addTask(String taskName) {
     final taskController = Provider.of<TaskController>(context, listen: false);
-    taskController.addTask(
+    taskController.createTask(
       taskName,
       onTaskAdded: () {
         _scrollToBottom();
@@ -51,6 +51,14 @@ class _TaskListScreenState extends State<TaskListScreen> {
     }
   }
 
+  bool isTaskListSelected = false;
+
+  void countTask() {
+    final taskController = Provider.of<TaskController>(context, listen: false);
+    int completedCount = taskController.countCompletedTasks();
+    print('Number of completed tasks: $completedCount');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,122 +66,152 @@ class _TaskListScreenState extends State<TaskListScreen> {
         title: const Text('Task List'),
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(50),
-          child: Container(
-            alignment: Alignment.centerRight,
-            padding: const EdgeInsets.all(20),
-            child: IconButton.filledTonal(
-              onPressed: () {
-                final controller = Provider.of<TaskController>(
-                  context,
-                  listen: false,
-                );
-
-                // controller.openDownloadFolder();
-                controller.createFolderInExternalStorage();
-                // controller.requestManageStoragePermission();
-              },
-              style: ButtonStyle(
-                backgroundColor: WidgetStateProperty.all(Colors.white),
-                iconColor: WidgetStateProperty.all(Colors.green),
-              ),
-              icon: const Icon(
-                Icons.upload,
-                // color: Colors.green,
-              ),
-            ),
-          ),
+          child: appBarCustom(context),
         ),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          // why the alignment is not working?
+          listViewTasks(),
+          taskTextField(context),
+        ],
+      ),
+    );
+  }
+
+  Padding taskTextField(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(20),
+      child: Row(
+        children: [
           Expanded(
-            child: Container(
-              color: Colors.grey[200],
-              padding: const EdgeInsets.all(8.0),
-              child: Consumer<TaskController>(
-                builder: (context, taskController, child) {
-                  return RefreshIndicator(
-                    onRefresh: taskController.refreshTask,
-                    child: Align(
-                      alignment: Alignment.topCenter,
-                      child: ListView.builder(
-                        controller: scrollController,
-                        itemCount: taskController.tasks.length,
-                        shrinkWrap: true,
-                        reverse: true,
-                        itemBuilder: (context, index) {
-                          final task = taskController.tasks[index];
-                          return ListTile(
-                            title: Text(task.taskName),
-                            leading: CircleAvatar(
-                              child: Text(task.taskID.toString()),
-                            ),
-                            trailing: Checkbox(
-                              value: task.isCompleted,
-                              onChanged: (value) {
-                                taskController.updateTask(task);
-                              },
-                            ),
-                            onLongPress: () {
-                              taskController.deleteTask(task.taskID!);
-                            },
-                          );
-                        },
-                      ),
-                    ),
-                  );
-                },
+            child: TextField(
+              style: const TextStyle(
+                color: Colors.black,
+              ),
+              autocorrect: true,
+              enableSuggestions: true,
+              controller: taskCreateController,
+              onEditingComplete: () {
+                final taskName = taskCreateController.text;
+                if (taskName.isNotEmpty) {
+                  _addTask(taskName);
+                }
+              },
+              onTapOutside: (event) {
+                FocusScope.of(context).unfocus();
+              },
+              decoration: InputDecoration(
+                hintText: 'Task',
+                hintStyle: TextStyle(
+                  color: Colors.grey[400],
+                ),
+                alignLabelWithHint: true,
+                label: Text(
+                  "Masukkan Task",
+                  style: TextStyle(
+                    color: Colors.grey[400],
+                  ),
+                ),
+                prefixIcon: const Icon(Icons.task_alt),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(20),
-            child: Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    style: const TextStyle(
-                      color: Colors.black,
-                    ),
-                    autocorrect: true,
-                    enableSuggestions: true,
-                    controller: taskCreateController,
-                    onEditingComplete: () {
-                      final taskName = taskCreateController.text;
-                      if (taskName.isNotEmpty) {
-                        _addTask(taskName);
-                      }
-                    },
-                    onTapOutside: (event) {
-                      FocusScope.of(context).unfocus();
-                    },
-                    decoration: InputDecoration(
-                      hintText: 'Task',
-                      hintStyle: TextStyle(
-                        color: Colors.grey[400],
-                      ),
-                      alignLabelWithHint: true,
-                      label: Text(
-                        "Masukkan Task",
-                        style: TextStyle(
-                          color: Colors.grey[400],
-                        ),
-                      ),
-                      prefixIcon: const Icon(Icons.task_alt),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                  ),
+          const SizedBox(width: 10),
+          ElevatedButton(
+            onPressed: saveTaskButtonAction,
+            child: const Text('Add Task'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Expanded listViewTasks() {
+    return Expanded(
+      child: Container(
+        color: Colors.grey[200],
+        padding: const EdgeInsets.all(8.0),
+        child: Consumer<TaskController>(
+          builder: (context, taskController, child) {
+            return RefreshIndicator(
+              onRefresh: taskController.loadTask,
+              child: Align(
+                alignment: Alignment.topCenter,
+                child: ListView.builder(
+                  controller: scrollController,
+                  itemCount: taskController.tasks.length,
+                  shrinkWrap: true,
+                  reverse: true,
+                  itemBuilder: (context, index) {
+                    final task = taskController.tasks[index];
+                    return listTaskComponent(task, taskController, index);
+                  },
                 ),
-                const SizedBox(width: 10),
-                ElevatedButton(
-                  onPressed: saveTaskButtonAction,
-                  child: const Text('Add Task'),
-                ),
-              ],
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
+
+  ListTile listTaskComponent(
+      Task task, TaskController taskController, int index) {
+    return ListTile(
+      title: Text(task.taskName),
+      subtitle: Text(task.isCompleted ? 'Task Completed' : 'Task Incompleted'),
+      leading: CircleAvatar(
+        child: Text(task.taskID.toString()),
+      ),
+      trailing: Checkbox(
+        value: taskController.tasks[index].isCompleted,
+        onChanged: (value) {
+          taskController.tasks[index].isCompleted = value!;
+          taskController.updateTask(task);
+        },
+      ),
+      onLongPress: () {
+        taskController.deleteTask(task.taskID!);
+      },
+    );
+  }
+
+  Container appBarCustom(BuildContext context) {
+    return Container(
+      alignment: Alignment.centerRight,
+      padding: const EdgeInsets.all(20),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Consumer(builder: (context, TaskController taskController, child) {
+            return Text(
+              'Completed Task: ${taskController.countCompletedTasks()}',
+              style: const TextStyle(
+                color: Colors.black,
+                fontSize: 14,
+              ),
+            );
+          }),
+          IconButton.filledTonal(
+            onPressed: () {
+              final controller = Provider.of<TaskController>(
+                context,
+                listen: false,
+              );
+              controller.checkPermissionStatus();
+            },
+            style: ButtonStyle(
+              backgroundColor: WidgetStateProperty.all(Colors.white),
+              iconColor: WidgetStateProperty.all(Colors.green),
+            ),
+            icon: const Icon(
+              Icons.upload,
+              // color: Colors.green,
             ),
           ),
         ],
