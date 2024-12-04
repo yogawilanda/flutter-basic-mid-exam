@@ -40,4 +40,13 @@ class Task {
       isCompleted: map['isCompleted'] == 1 ? true : false,
     );
   }
+
+  factory Task.fromJson(Map<String, dynamic> json) {
+    return Task(
+      taskID: json['taskID'],
+      taskName: json['taskName'],
+      taskDescription: json['taskDescription'],
+      isCompleted: json['isCompleted'] == 1 ? true : false,
+    );
+  }
 }

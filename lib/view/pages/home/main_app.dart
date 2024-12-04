@@ -15,10 +15,10 @@ class Yoga_1201222013 extends StatefulWidget {
   final String? nama;
 
   @override
-  State<Yoga_1201222013> createState() => _Yoga_1201222013State();
+  State<Yoga_1201222013> createState() => Yoga_1201222013State();
 }
 
-class _Yoga_1201222013State extends State<Yoga_1201222013> {
+class Yoga_1201222013State extends State<Yoga_1201222013> {
   int _counter = 0;
 
   void _incrementCounter() {

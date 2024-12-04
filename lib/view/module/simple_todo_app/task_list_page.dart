@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 
 class TaskListScreen extends StatefulWidget {
   const TaskListScreen({super.key});
+
   @override
   State<TaskListScreen> createState() => _TaskListScreenState();
 }
@@ -55,6 +56,33 @@ class _TaskListScreenState extends State<TaskListScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Task List'),
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(50),
+          child: Container(
+            alignment: Alignment.centerRight,
+            padding: EdgeInsets.all(20),
+            child: IconButton.filledTonal(
+              onPressed: () {
+                final controller = Provider.of<TaskController>(
+                  context,
+                  listen: false,
+                );
+
+                // controller.openDownloadFolder();
+                controller.createFolderInExternalStorage();
+                // controller.requestManageStoragePermission();
+              },
+              style: ButtonStyle(
+                backgroundColor: WidgetStateProperty.all(Colors.white),
+                iconColor: WidgetStateProperty.all(Colors.green),
+              ),
+              icon: Icon(
+                Icons.upload,
+                // color: Colors.green,
+              ),
+            ),
+          ),
+        ),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -106,9 +134,11 @@ class _TaskListScreenState extends State<TaskListScreen> {
               children: [
                 Expanded(
                   child: TextField(
+                    style: TextStyle(
+                      color: Colors.black,
+                    ),
                     autocorrect: true,
                     enableSuggestions: true,
-                    expands: true,
                     controller: taskCreateController,
                     onEditingComplete: () {
                       final taskName = taskCreateController.text;
@@ -116,13 +146,21 @@ class _TaskListScreenState extends State<TaskListScreen> {
                         _addTask(taskName);
                       }
                     },
+                    onTapOutside: (event) {
+                      FocusScope.of(context).unfocus();
+                    },
                     decoration: InputDecoration(
                       hintText: 'Task',
                       hintStyle: TextStyle(
                         color: Colors.grey[400],
                       ),
-                      // labelText: 'Task Name',
-                      label: Text("Hi"),
+                      alignLabelWithHint: true,
+                      label: Text(
+                        "Masukkan Task",
+                        style: TextStyle(
+                          color: Colors.grey[400],
+                        ),
+                      ),
                       prefixIcon: const Icon(Icons.task_alt),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),

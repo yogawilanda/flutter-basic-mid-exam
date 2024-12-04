@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 class LoginView extends StatelessWidget {
   final String menu;
 
-  LoginView({super.key, required this.menu});
+  const LoginView({super.key, required this.menu});
 
 
   @override

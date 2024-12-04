@@ -1,4 +1,3 @@
-
 import 'package:flutter_mid_basic_exam/model/tasks.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
@@ -12,7 +11,6 @@ class DBHelper {
 
   Future<Database> get database async {
     if (_database != null) return _database!;
-
     _database = await _initDB('tasks.db');
     return _database!;
   }
@@ -20,16 +18,8 @@ class DBHelper {
   Future<Database> _initDB(String filePath) async {
     final dbPath = await getDatabasesPath();
     final path = join(dbPath, filePath);
-
     return await openDatabase(path, version: 1, onCreate: _createDB);
   }
-
-  // Future<Database> _initDB(String filePath) async {
-  //   final dbPath = await getDatabasesPath();
-  //   final path = dbPath + filePath;
-
-  //   return await openDatabase(path, version: 1, onCreate: _createDB);
-  // }
 
   Future _createDB(Database db, int version) async {
     await db.execute('''

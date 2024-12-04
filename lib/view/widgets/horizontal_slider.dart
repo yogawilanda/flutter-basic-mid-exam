@@ -19,6 +19,7 @@ class HorizontalSlider extends StatelessWidget {
             width: 1,
           ),
         ),
+  
         // borderRadius: BorderRadius.circular(12),
       ),
       height: MediaQuery.of(context).size.height * 0.12,
@@ -36,8 +37,8 @@ class HorizontalSlider extends StatelessWidget {
               child: Column(
                 children: [
                   CircleAvatar(
-                    child: Center(),
                     radius: MediaQuery.of(context).size.height * 0.03,
+                    child: Center(),
                   ),
                   Text(
                     "Item $index",

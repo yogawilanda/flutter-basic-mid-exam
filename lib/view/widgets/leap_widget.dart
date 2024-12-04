@@ -4,7 +4,11 @@ class Leap extends StatelessWidget {
   final Widget page;
   final String? title;
 
-  const Leap({Key? key, required this.page, this.title}) : super(key: key);
+  const Leap({
+    super.key,
+    required this.page,
+    this.title,
+  });
 
   @override
   Widget build(BuildContext context) {

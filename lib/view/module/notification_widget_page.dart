@@ -46,7 +46,8 @@ class NotificationWidgetPage extends StatelessWidget {
             ),
             ListView.builder(
               shrinkWrap: true,
-              itemCount: menu.length, // Use the length of the menu list
+              itemCount: menu.length,
+              // Use the length of the menu list
               itemBuilder: (context, index) {
                 return Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),

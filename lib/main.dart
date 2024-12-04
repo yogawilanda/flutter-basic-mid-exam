@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mid_basic_exam/controller/task_controller.dart';
+import 'package:flutter_mid_basic_exam/view/widgets/tab_bar_format_navigation.dart';
 
 import 'package:provider/provider.dart';
 
@@ -11,12 +12,15 @@ import 'view/module/simple_todo_app/task_list_page.dart';
 
 void main() {
   runApp(
-    MultiProvider(providers: [
-      ChangeNotifierProvider(create: (context) => TaskController()),
-      ChangeNotifierProvider(create: (context) => RegisterController()),
-      ChangeNotifierProvider(create: (context) => LoginController()),
-      ChangeNotifierProvider(create: (context) => TokoController()),
-    ], child: const MyApp()),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => TaskController()),
+        ChangeNotifierProvider(create: (context) => RegisterController()),
+        ChangeNotifierProvider(create: (context) => LoginController()),
+        ChangeNotifierProvider(create: (context) => TokoController()),
+      ],
+      child: const MyApp(),
+    ),
   );
 }
 
@@ -28,24 +32,19 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Tugas Kuliah',
       debugShowCheckedModeBanner: false,
       theme: lightTheme,
-      // routes: {
-      //   // '/': (context) => BottomNavigationBarExample(),
-      //   '/': (context) => DashboardBanking(),
-      //   '/dashboard': (context) => DashboardBanking(),
-      //   '/customer_shop': (context) => CustomerShop(),
-      //   '/media_picker': (context) => MediaPicker(),
-      //   '/spending_detail': (context) => SpendingDetailsPage(),
-      // },
-      // onUnknownRoute: (settings) {
-      //   return MaterialPageRoute(
-      //       builder: (context) => BottomNavigationBarExample());
-      // },
       // home : CustomerShop(),
+
       // home : DashboardBanking(),
+
       // home: BottomNavigationBarExample(),
-      // home: MediaPicker(), // bukan untuk tugas uts
-      // home:  TabBarFormat(),
+
+      // bukan untuk tugas uts
+      // home: MediaPicker(),
+
+      // home:  TabBarFormatNavigation(),
+
       home: const TaskListScreen(),
+
       // home: const Yoga_1201222013(title: 'Welcome', nama: 'Jhon Doe'),
     );
   }

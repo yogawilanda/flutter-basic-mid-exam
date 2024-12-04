@@ -101,7 +101,7 @@ class TabCustomWidget extends StatelessWidget {
       icon: icon,
       child: Text(
         title,
-        style: TextStyle(
+        style: const TextStyle(
           color: Colors.white,
         ),
       ),

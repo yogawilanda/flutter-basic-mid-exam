@@ -19,14 +19,14 @@ class TextFieldCustom extends StatelessWidget {
       decoration: InputDecoration(
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide(color: Colors.green),
+          borderSide: const BorderSide(color: Colors.green),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide(color: Colors.green, width: 2),
+          borderSide: const BorderSide(color: Colors.green, width: 2),
         ),
         hintText: textHint,
-        hintStyle: TextStyle(color: Colors.grey),
+        hintStyle: const TextStyle(color: Colors.grey),
       ),
     );
   }
