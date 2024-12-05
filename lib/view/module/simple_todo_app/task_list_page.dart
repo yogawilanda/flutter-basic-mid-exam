@@ -81,42 +81,65 @@ class _TaskListScreenState extends State<TaskListScreen> {
 
   Padding taskTextField(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
       child: Row(
         children: [
           Expanded(
             child: TextField(
-              style: const TextStyle(
-                color: Colors.black,
-              ),
+              style: const TextStyle(color: Colors.black),
               autocorrect: true,
               enableSuggestions: true,
               controller: taskCreateController,
               onEditingComplete: () {
                 final taskName = taskCreateController.text;
-                if (taskName.isNotEmpty) {
-                  _addTask(taskName);
-                }
+                if (taskName.isNotEmpty) _addTask(taskName);
               },
-              onTapOutside: (event) {
-                FocusScope.of(context).unfocus();
-              },
+              onTapOutside: (_) => FocusScope.of(context).unfocus(),
+              // decoration: InputDecoration(
+              //   hintText: 'Task',
+              //   hintStyle: TextStyle(color: Colors.grey[400]),
+              //   label: Text('Masukkan Task', style: TextStyle(color: Colors.grey[400])),
+              //   prefixIcon: const Icon(Icons.task_alt),
+              //   border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+              // ),
+
               decoration: InputDecoration(
                 hintText: 'Task',
-                hintStyle: TextStyle(
-                  color: Colors.grey[400],
+                hintStyle: TextStyle(color: Colors.grey[400]),
+                labelText: 'Masukkan Task',
+                labelStyle: TextStyle(color: Colors.grey[400]),
+                prefixIcon:
+                    const Icon(Icons.task_alt, color: Colors.blueAccent),
+                suffixIcon: IconButton(
+                  icon: const Icon(Icons.clear, color: Colors.redAccent),
+                  onPressed: () {
+                    taskCreateController.clear();
+                  },
                 ),
-                alignLabelWithHint: true,
-                label: Text(
-                  "Masukkan Task",
-                  style: TextStyle(
-                    color: Colors.grey[400],
-                  ),
-                ),
-                prefixIcon: const Icon(Icons.task_alt),
+                // filled: true,
+                // fillColor: Colors.blue[50],
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide(color: Colors.blueAccent, width: 2),
                 ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide(color: Colors.blueAccent, width: 2),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide(color: Colors.green, width: 2),
+                ),
+                errorBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide(color: Colors.redAccent, width: 2),
+                ),
+                focusedErrorBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide(color: Colors.redAccent, width: 2),
+                ),
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 15, horizontal: 20),
               ),
             ),
           ),

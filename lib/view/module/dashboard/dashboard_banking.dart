@@ -87,13 +87,7 @@ class _DashboardBankingState extends State<DashboardBanking> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // userIdentity(username),
-            // const SizedBox(height: 20),
-            // cardUserBalanceInformation(),
-            // const SizedBox(height: 20),
-            // Card Menu
             cardMenu(),
-            // Spending List
             spendingList(),
           ],
         ),
@@ -275,12 +269,12 @@ class _DashboardBankingState extends State<DashboardBanking> {
     return Card(
       elevation: 2,
       child: Container(
-        constraints: BoxConstraints(
+        constraints: const BoxConstraints(
           minWidth: double.infinity,
         ),
         padding:
             const EdgeInsets.only(top: 12, left: 20, right: 20, bottom: 16),
-        margin: EdgeInsets.only(top: 2),
+        margin: const EdgeInsets.only(top: 2),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
