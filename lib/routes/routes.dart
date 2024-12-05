@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mid_basic_exam/view/module/bottom_navigation_bar_page.dart';
 import 'package:flutter_mid_basic_exam/view/module/dashboard/dashboard_banking.dart';
+import 'package:flutter_mid_basic_exam/view/module/error/error_page.dart';
 import 'package:flutter_mid_basic_exam/view/module/image_picker/media_picker.dart';
 import 'package:flutter_mid_basic_exam/view/module/simple_todo_app/task_list_page.dart';
 import 'package:flutter_mid_basic_exam/view/pages/home/main_app.dart';
@@ -21,7 +22,7 @@ class AppRoutes {
         return MaterialPageRoute(builder: (context) => DashboardBanking());
       case bottomNavigationBarExample:
         return MaterialPageRoute(
-            builder: (context) => BottomNavigationBarExample());
+            builder: (context) => const BottomNavigationBarExample());
       case mediaPicker:
         return MaterialPageRoute(builder: (context) => MediaPicker());
       case tabBarFormatNavigation:
@@ -44,10 +45,7 @@ class AppRoutes {
 
   static Route<dynamic> _errorRoute() {
     return MaterialPageRoute(
-      builder: (context) => Scaffold(
-        appBar: AppBar(title: const Text('Error')),
-        body: const Center(child: Text('Page not found')),
-      ),
+      builder: (context) => const ErrorPages(),
     );
   }
 }
