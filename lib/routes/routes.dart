@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mid_basic_exam/view/module/bottom_navigation_bar_page.dart';
-import 'package:flutter_mid_basic_exam/view/module/dashboard/dashboard_banking.dart';
+import 'package:flutter_mid_basic_exam/view/module/budgeting_app/budgeting_add_budget_form.dart';
+import 'package:flutter_mid_basic_exam/view/module/budgeting_app/dashboard_budgeting.dart';
 import 'package:flutter_mid_basic_exam/view/module/error/error_page.dart';
 import 'package:flutter_mid_basic_exam/view/module/image_picker/media_picker.dart';
 import 'package:flutter_mid_basic_exam/view/module/simple_todo_app/task_list_page.dart';
@@ -8,18 +9,21 @@ import 'package:flutter_mid_basic_exam/view/pages/home/main_app.dart';
 import 'package:flutter_mid_basic_exam/view/widgets/tab_bar_format_navigation.dart';
 
 class AppRoutes {
-  static const String dashboardBanking = '/';
+  static const String dashboardBudgetingApp = '/';
   static const String bottomNavigationBarExample =
       '/bottomNavigationBarExample';
   static const String mediaPicker = '/mediaPicker';
   static const String tabBarFormatNavigation = '/tabBarFormatNavigation';
   static const String taskListScreen = '/taskListScreen';
   static const String yoga = '/yoga';
+  static const String budgeting = '/budgeting';
 
   static Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case dashboardBanking:
-        return MaterialPageRoute(builder: (context) => DashboardBanking());
+      case dashboardBudgetingApp:
+        return MaterialPageRoute(builder: (context) => DashboardBudgetinApp());
+      case budgeting:
+        return MaterialPageRoute(builder: (context) => BudgetingForm());
       case bottomNavigationBarExample:
         return MaterialPageRoute(
             builder: (context) => const BottomNavigationBarExample());

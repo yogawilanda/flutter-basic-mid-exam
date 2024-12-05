@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mid_basic_exam/controller/task_controller/task_controller_libraries.dart';
 import 'package:flutter_mid_basic_exam/routes/routes.dart';
-import 'package:flutter_mid_basic_exam/view/module/dashboard/dashboard_banking.dart';
+import 'package:flutter_mid_basic_exam/view/module/budgeting_app/dashboard_budgeting.dart';
 import 'package:flutter_mid_basic_exam/view/module/image_picker/media_picker.dart';
 import 'package:flutter_mid_basic_exam/view/widgets/tab_bar_format_navigation.dart';
 
@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Tugas Kuliah',
       debugShowCheckedModeBanner: false,
       theme: lightTheme,
-      home: DashboardBanking(),
+      home: DashboardBudgetinApp(),
       onGenerateRoute: AppRoutes.onGenerateRoute,
     );
   }

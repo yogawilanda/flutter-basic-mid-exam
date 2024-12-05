@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mid_basic_exam/view/module/dashboard/spending_list.dart';
+import 'package:flutter_mid_basic_exam/view/module/budgeting_app/spending_list.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class DashboardBanking extends StatefulWidget {
-  DashboardBanking({super.key, this.username});
+class DashboardBudgetinApp extends StatefulWidget {
+  DashboardBudgetinApp({super.key, this.username});
   String? username;
   @override
-  State<DashboardBanking> createState() => _DashboardBankingState();
+  State<DashboardBudgetinApp> createState() => _DashboardBudgetinAppState();
 }
 
-class _DashboardBankingState extends State<DashboardBanking> {
+class _DashboardBudgetinAppState extends State<DashboardBudgetinApp> {
   @override
   Widget build(BuildContext context) {
     String username = "Jhon Doe";
@@ -22,7 +22,7 @@ class _DashboardBankingState extends State<DashboardBanking> {
           flexibleSpace: Container(
             padding: const EdgeInsets.all(22),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                 bottomLeft: Radius.circular(20),
                 bottomRight: Radius.circular(20),
               ),
@@ -233,7 +233,7 @@ class _DashboardBankingState extends State<DashboardBanking> {
 
   cardMenu() {
     List<String> menuList = [
-      "Top Up",
+      "Budgeting",
       "Transfer",
       "Withdraw",
       "Payment",
@@ -256,7 +256,7 @@ class _DashboardBankingState extends State<DashboardBanking> {
 
     // Navigation Route
     List<String> routeList = [
-      "/topup",
+      "/budgeting",
       "/transfer",
       "/withdraw",
       "/payment",
