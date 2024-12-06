@@ -1,20 +1,19 @@
 import 'dart:convert';
 
-class UserFinanceModel {
+class BudgetingModel {
   String id;
   String? name;
   String? email;
   String? password;
-  // variable for current user balance in rupiah
   double? balance;
   String? token;
 
-  UserFinanceModel({
+  BudgetingModel({
     required this.id,
     this.name,
     this.email,
     this.password,
-  this.balance,
+    this.balance,
     this.token,
   });
 
@@ -29,8 +28,8 @@ class UserFinanceModel {
     };
   }
 
-  factory UserFinanceModel.fromMap(Map<String, dynamic> map) {
-    return UserFinanceModel(
+  factory BudgetingModel.fromMap(Map<String, dynamic> map) {
+    return BudgetingModel(
       id: map['id'] ?? '',
       name: map['name'],
       email: map['email'],
@@ -42,5 +41,6 @@ class UserFinanceModel {
 
   String toJson() => json.encode(toMap());
 
-  factory UserFinanceModel.fromJson(String source) => UserFinanceModel.fromMap(json.decode(source));
+  factory BudgetingModel.fromJson(String source) =>
+      BudgetingModel.fromMap(json.decode(source));
 }

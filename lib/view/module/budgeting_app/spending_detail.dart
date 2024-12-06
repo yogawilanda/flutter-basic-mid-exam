@@ -3,14 +3,10 @@ import 'package:google_fonts/google_fonts.dart';
 
 class SpendingDetailsPage extends StatelessWidget {
   SpendingDetailsPage({super.key, this.title, this.amount});
-
   String? title;
   String? amount;
-
-
   @override
   Widget build(BuildContext context) {
-  final Map<String, String> args = ModalRoute.of(context)!.settings.arguments as Map<String, String>;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Spending Details'),

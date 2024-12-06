@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class SpendingListPage extends StatefulWidget {
   const SpendingListPage({super.key});
 
@@ -23,22 +22,10 @@ class _SpendingListPageState extends State<SpendingListPage> {
             subtitle: Text('Rp. ${index == 0 ? 5000 : index * 10000}'),
             trailing: const Icon(Icons.arrow_forward_ios),
             onTap: () {
-              Navigator.pushNamed(context, '/spending_detail',
-                  arguments: Map<String, String>.from(
-                    {
-                      'title': 'Spending $index',
-                      'amount': 'Rp. ${index == 0 ? 5000 : index * 10000}'
-                    },
-                    // arguments: 'Rp. ${index == 0 ? 5000 : index * 10000}',
-                  ));
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (context) => SpendingDetailsPage(
-              //         title: 'Spending $index',
-              //         amount: 'Rp. ${index == 0 ? 5000 : index * 10000}'),
-              //   ),
-              // );
+              Navigator.pushNamed(context, '/spendingDetailsPage', arguments: {
+                'title': 'Spending $index',
+                'amount': 'Rp. ${index == 0 ? 5000 : index * 10000}'
+              });
             },
           );
         },

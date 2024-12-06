@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mid_basic_exam/controller/budgeting_controller.dart';
 import 'package:flutter_mid_basic_exam/controller/task_controller/task_controller_libraries.dart';
 import 'package:flutter_mid_basic_exam/routes/routes.dart';
 import 'package:flutter_mid_basic_exam/view/module/budgeting_app/dashboard_budgeting.dart';
@@ -11,7 +12,6 @@ import 'constants/theme.dart';
 import 'controller/auth_controller/login_controller.dart';
 import 'controller/auth_controller/register_controller.dart';
 import 'controller/toko_controller.dart';
-import 'view/module/simple_todo_app/task_list_page.dart';
 
 void main() {
   runApp(
@@ -21,6 +21,7 @@ void main() {
         ChangeNotifierProvider(create: (context) => RegisterController()),
         ChangeNotifierProvider(create: (context) => LoginController()),
         ChangeNotifierProvider(create: (context) => TokoController()),
+        ChangeNotifierProvider(create: (context) => BudgetingController()),
       ],
       child: const MyApp(),
     ),
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Tugas Kuliah',
       debugShowCheckedModeBanner: false,
       theme: lightTheme,
-      home: DashboardBudgetinApp(),
+      home: DashboardBudgetingApp(),
       onGenerateRoute: AppRoutes.onGenerateRoute,
     );
   }
