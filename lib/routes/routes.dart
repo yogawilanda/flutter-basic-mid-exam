@@ -22,7 +22,6 @@ class AppRoutes {
   static const String spendingListPage = '/spendingListPage';
   static const String spendingDetailsPage = '/spendingDetailsPage';
 
-
   static Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case dashboardBudgetingApp:
@@ -32,8 +31,10 @@ class AppRoutes {
       case spendingListPage:
         return MaterialPageRoute(builder: (context) => SpendingListPage());
       case spendingDetailsPage:
-        return MaterialPageRoute(builder: (context) => SpendingDetailsPage(
-        ));
+        return MaterialPageRoute(
+          builder: (context) => SpendingDetailsPage(),
+          settings: settings,
+        );
       case bottomNavigationBarExample:
         return MaterialPageRoute(
             builder: (context) => const BottomNavigationBarExample());

@@ -2,49 +2,73 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SpendingDetailsPage extends StatelessWidget {
-  SpendingDetailsPage({super.key, this.title, this.amount});
-  String? title;
-  String? amount;
   @override
   Widget build(BuildContext context) {
+    final Map<String, dynamic>? arguments =
+        ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
+
+    final String title = arguments?['title'] ?? 'Data not found';
+    final String amount = arguments?['amount'] ?? 'Rp. 100.000';
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Spending Details'),
       ),
-      body: Column(
-        children: [
-          Container(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title ?? 'Data not found',
-                  style: GoogleFonts.poppins(fontSize: 24),
-                ),
-                // underline
-                underLine(),
-                buttonBar(),
-                // Table
-                tableSection(),
-              ],
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              title,
+              style: GoogleFonts.poppins(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-          )
-        ],
+            const SizedBox(height: 8),
+            Container(
+              height: 2,
+              width: double.infinity,
+              color: Colors.green,
+            ),
+            const SizedBox(height: 16),
+            _buttonBar(),
+            const SizedBox(height: 16),
+            _detailsTable(amount),
+          ],
+        ),
       ),
     );
   }
 
-  Container underLine() {
-    return Container(
-      margin: const EdgeInsets.only(top: 8, bottom: 8),
-      height: 2,
-      width: double.infinity,
-      color: Colors.green,
+  Widget _buttonBar() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        _customButton(icon: Icons.download, onPressed: () {}),
+        _customButton(icon: Icons.share, onPressed: () {}),
+        _customButton(icon: Icons.delete, onPressed: () {}),
+        _customButton(icon: Icons.edit, onPressed: () {}),
+      ],
     );
   }
 
-  Table tableSection() {
+  Widget _customButton({required IconData icon, required VoidCallback onPressed}) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 4),
+      child: OutlinedButton(
+        style: OutlinedButton.styleFrom(
+          shape: const CircleBorder(),
+          side: BorderSide(color: Colors.green),
+        ),
+        onPressed: onPressed,
+        child: Icon(icon, color: Colors.green),
+      ),
+    );
+  }
+
+  Widget _detailsTable(String amount) {
     return Table(
       border: TableBorder.all(
         color: Colors.green,
@@ -57,79 +81,44 @@ class SpendingDetailsPage extends StatelessWidget {
       },
       defaultVerticalAlignment: TableCellVerticalAlignment.middle,
       children: [
-        tableHeader(),
-        tableChildren(field: 'Amount', value: amount ?? 'Rp. 100.000'),
-        tableChildren(field: 'Category', value: 'Food'),
-        tableChildren(field: 'Date', value: '2021-10-10'),
+        _tableHeader(),
+        _tableRow(field: 'Amount', value: amount),
+        _tableRow(field: 'Category', value: 'Food'),
+        _tableRow(field: 'Date', value: '2021-10-10'),
       ],
     );
   }
 
-  Row buttonBar() {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.end,
-      mainAxisAlignment: MainAxisAlignment.end,
+  TableRow _tableHeader() {
+    return TableRow(
+      decoration: BoxDecoration(color: Colors.green),
       children: [
-        OutlinedButton(
-          onPressed: () {},
-          child: const Icon(Icons.download),
-        ),
-        // share button
-        OutlinedButton(
-          onPressed: () {},
-          child: const Icon(Icons.share),
-        ),
-        // delete button
-        OutlinedButton(
-          onPressed: () {},
-          child: const Icon(Icons.delete),
-        ),
-        // edit button
-        OutlinedButton(
-          onPressed: () {},
-          child: const Icon(Icons.edit),
-        ),
+        _tableCell('Field', isHeader: true),
+        _tableCell('Value', isHeader: true),
       ],
     );
   }
 
-  TableRow tableChildren({String? field, String? value}) {
+  TableRow _tableRow({required String field, required String value}) {
     return TableRow(
       children: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(field ?? 'Amount'),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(value ?? 'Rp. 100.000'),
-        ),
+        _tableCell(field),
+        _tableCell(value),
       ],
     );
   }
 
-  TableRow tableHeader() {
-    return TableRow(
-      decoration: BoxDecoration(
-        color: Colors.green,
-        borderRadius: BorderRadius.circular(8),
+  Widget _tableCell(String text, {bool isHeader = false}) {
+    return Padding(
+      padding: const EdgeInsets.all(8),
+      child: Text(
+        text,
+        style: GoogleFonts.poppins(
+          fontSize: 14,
+          fontWeight: isHeader ? FontWeight.bold : FontWeight.normal,
+          color: isHeader ? Colors.white : Colors.black87,
+        ),
       ),
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(
-            'Field',
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(
-            'Value',
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-          ),
-        ),
-      ],
     );
   }
 }

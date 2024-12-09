@@ -23,7 +23,7 @@ class _DashboardBudgetingAppState extends State<DashboardBudgetingApp> {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize:
-            Size.fromHeight(MediaQuery.of(context).size.height * 0.38),
+            Size.fromHeight(MediaQuery.of(context).size.height * 0.3),
         child: DashboardAppBar(username: widget.username ?? "John Doe"),
       ),
       body: Padding(
