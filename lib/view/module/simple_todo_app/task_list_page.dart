@@ -95,13 +95,6 @@ class _TaskListScreenState extends State<TaskListScreen> {
                 if (taskName.isNotEmpty) _addTask(taskName);
               },
               onTapOutside: (_) => FocusScope.of(context).unfocus(),
-              // decoration: InputDecoration(
-              //   hintText: 'Task',
-              //   hintStyle: TextStyle(color: Colors.grey[400]),
-              //   label: Text('Masukkan Task', style: TextStyle(color: Colors.grey[400])),
-              //   prefixIcon: const Icon(Icons.task_alt),
-              //   border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-              // ),
 
               decoration: InputDecoration(
                 hintText: 'Task',
