@@ -14,20 +14,58 @@ class MediaPicker extends StatefulWidget {
 class MediaPickerState extends State<MediaPicker> {
   final ImagePicker _imagePicker = ImagePicker();
 
-  XFile? _selectedMedia;
-  VideoPlayerController? _videoPlayerController;
+  final List<XFile> _image = [];
+
+  late VideoPlayerController _videoPlayerController;
 
   @override
-  void dispose() {
-    _videoPlayerController?.dispose();
-    super.dispose();
+  void initState() {
+    super.initState();
+    _videoPlayerController = VideoPlayerController.asset(
+      // use this for video from gallery
+      _imageFile == null ? "" : _imageFile!.toString(),
+    );
+    
+    // VideoPlayerController.networkUrl(Uri.parse(
+    //     'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4'))
+    //   ..initialize().then((_) {
+    //     // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
+    //     setState(() {});
+    //   });
+  }
+
+  Future<void> openCamera() async {
+    var image = await _imagePicker.pickImage(source: ImageSource.camera);
+    if (image != null) {
+      setState(() {
+        // get current image from camera
+        debugPrint("Image Path: ${image.path}");
+        _image.add(image);
+      });
+    }
+  }
+
+  //------------------cara mas rifqy------------------
+  File? _imageFile;
+  Future<void> pickImageAlaMasRifqy() async {
+    final imageFile =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
+
+    if (imageFile == null) return;
+
+    final imageTemporary = File(imageFile.path);
+
+    setState(() {
+      _imageFile = imageTemporary;
+    });
   }
 
   Future<void> openGallery() async {
     var image = await _imagePicker.pickImage(source: ImageSource.gallery);
     if (image != null) {
       setState(() {
-        _selectedMedia = image;
+        // get current image from gallery
+        _image.add(image);
       });
     }
   }
@@ -36,33 +74,23 @@ class MediaPickerState extends State<MediaPicker> {
     var video = await _imagePicker.pickVideo(source: ImageSource.gallery);
     if (video != null) {
       setState(() {
-        _selectedMedia = video;
-        _initializeVideoPlayer(video.path);
+        // get current video from gallery
+        debugPrint("Video Path: ${video.path}");
       });
     }
   }
 
-  void _initializeVideoPlayer(String path) {
-    _videoPlayerController = VideoPlayerController.file(File(path))
-      ..initialize().then((_) {
-        // Refresh UI once video is initialized
-        setState(() {}); 
-      });
-  }
-
-  void deleteMedia() {
+  void deleteImage() {
     setState(() {
-      _selectedMedia = null;
-      _videoPlayerController?.dispose();
-      _videoPlayerController = null;
+      _image.clear();
     });
   }
 
   void openMediaAction(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      builder: (context) => buttonControl(),
-    );
+    return setState(() {
+      showModalBottomSheet(
+          context: context, builder: (context) => buttonControl());
+    });
   }
 
   @override
@@ -75,44 +103,44 @@ class MediaPickerState extends State<MediaPicker> {
         child: Column(
           children: [
             Expanded(
-              flex: 1,
-              child: Column(
-                children: [
-                  if (_selectedMedia != null)
-                    if (_selectedMedia!.path.endsWith(".mp4"))
-                      _videoPlayerController != null &&
-                              _videoPlayerController!.value.isInitialized
-                          ? AspectRatio(
-                              aspectRatio:
-                                  _videoPlayerController!.value.aspectRatio,
-                              child: VideoPlayer(_videoPlayerController!),
-                            )
-                          : const Center(child: CircularProgressIndicator())
-                    else
-                      Image.file(
-                        File(_selectedMedia!.path),
-                        fit: BoxFit.fitWidth,
-                      )
-                  else
-                    const Center(child: Text("No media selected")),
-                  if (_videoPlayerController != null &&
-                      _videoPlayerController!.value.isInitialized)
-                    ElevatedButton(
-                      onPressed: () {
-                        setState(() {
-                          _videoPlayerController!.value.isPlaying
-                              ? _videoPlayerController!.pause()
-                              : _videoPlayerController!.play();
-                        });
-                      },
-                      child: Text(
-                        _videoPlayerController!.value.isPlaying
-                            ? "Pause Video"
-                            : "Play Video",
-                      ),
+                flex: 1,
+                child: Column(
+                  children: [
+                    _image.isEmpty
+                        ? Container()
+                        : Image(
+                            image: FileImage(
+                              File(_image.isEmpty
+                                  ? ""
+                                  : _image.last.path.toString()),
+                            ),
+                          ),
+                    // video player
+                    AspectRatio(
+                      aspectRatio: 16 / 9,
+                      child: VideoPlayer(_videoPlayerController),
                     ),
-                ],
-              ),
+                    Container(
+                      padding: const EdgeInsets.all(16),
+                      child: Text(_image.isEmpty
+                          ? "No Image"
+                          : _image.isEmpty
+                              ? _image[0].path.toString().substring(45)
+                              : _image.last.path.toString()),
+                    ),
+                  ],
+                )),
+            ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  _videoPlayerController.value.isPlaying
+                      ? _videoPlayerController.pause()
+                      : _videoPlayerController.play();
+                });
+              },
+              child: Text(_videoPlayerController.value.isPlaying
+                  ? "Pause Video"
+                  : "Play Video"),
             ),
           ],
         ),
@@ -121,7 +149,7 @@ class MediaPickerState extends State<MediaPicker> {
         onPressed: () {
           openMediaAction(context);
         },
-        tooltip: 'Media Actions',
+        tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
     );
@@ -135,7 +163,7 @@ class MediaPickerState extends State<MediaPicker> {
           Expanded(
             child: ElevatedButton(
               onPressed: () {
-                Navigator.pop(context);
+                debugPrint("open gallery");
                 openGallery();
               },
               child: const Text("Gallery"),
@@ -145,7 +173,17 @@ class MediaPickerState extends State<MediaPicker> {
           Expanded(
             child: ElevatedButton(
               onPressed: () {
-                Navigator.pop(context);
+                debugPrint("open camera");
+                openCamera();
+              },
+              child: const Text("Camera"),
+            ),
+          ),
+          const SizedBox(width: 16),
+          Expanded(
+            child: ElevatedButton(
+              onPressed: () {
+                // deleteImage();
                 openVideo();
               },
               child: const Text("Video"),
@@ -155,8 +193,7 @@ class MediaPickerState extends State<MediaPicker> {
           Expanded(
             child: ElevatedButton(
               onPressed: () {
-                Navigator.pop(context);
-                deleteMedia();
+                deleteImage();
               },
               child: const Text("Delete"),
             ),
