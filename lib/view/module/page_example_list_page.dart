@@ -17,6 +17,7 @@ class PageExampleListPage extends StatelessWidget {
       "Authentications Page",
       "Navigation Bar Widget",
       "Setting",
+      "Budgeting App",
       "Logout"
     ];
 
@@ -26,6 +27,7 @@ class PageExampleListPage extends StatelessWidget {
       "Notification Widget Description",
       "Navigation Bar Widget Description",
       "Setting Description",
+      "Budgeting App Description",
       "Logout Description"
     ];
 
@@ -35,6 +37,7 @@ class PageExampleListPage extends StatelessWidget {
       Icons.notifications,
       Icons.grid_view_sharp,
       Icons.settings,
+      Icons.monetization_on,
       Icons.logout
     ];
 
@@ -52,7 +55,7 @@ class PageExampleListPage extends StatelessWidget {
           ),
         ),
       ),
-      body: Container(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(24),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -149,6 +152,9 @@ class PageExampleListPage extends StatelessWidget {
         break;
       case 4:
         _navigateToPage(context, const NotificationWidgetPage());
+        break;
+      case 5:
+        _navigateToPage(context, const BottomNavigationBarExample());
         break;
     }
   }

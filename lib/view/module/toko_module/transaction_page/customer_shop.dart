@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mid_basic_exam/model/product.dart';
-import 'package:flutter_mid_basic_exam/view/module/toko_module/customer_cart_page.dart';
-import 'package:flutter_mid_basic_exam/view/module/toko_module/product_details_page.dart';
+import 'package:flutter_mid_basic_exam/view/module/toko_module/transaction_page/customer_cart_page.dart';
+import 'package:flutter_mid_basic_exam/view/module/toko_module/transaction_page/product_details_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CustomerShop extends StatefulWidget {
@@ -46,6 +46,31 @@ class _CustomerShopState extends State<CustomerShop> {
       name: 'Product 6',
       price: 600.0,
     ),
+    Product(
+      id: 7,
+      name: 'Product 7',
+      price: 700.0,
+    ),
+    Product(
+      id: 8,
+      name: 'Product 8',
+      price: 700.0,
+    ),
+    Product(
+      id: 9,
+      name: 'Product 9',
+      price: 700.0,
+    ),
+    Product(
+      id: 10,
+      name: 'Product 10',
+      price: 700.0,
+    ),
+    Product(
+      id: 11,
+      name: 'Product 11',
+      price: 700.0,
+    ),
   ];
   List<Product> searchedProducts = [];
   TextEditingController searchController = TextEditingController();
@@ -53,6 +78,10 @@ class _CustomerShopState extends State<CustomerShop> {
 
   // product added to cart
   List<Product> addedToCartProducts = [];
+
+  // method to make custom addition on products
+  bool showBottomSheet = false;
+  int _itemCount = 0;
 
   @override
   void initState() {
@@ -100,36 +129,79 @@ class _CustomerShopState extends State<CustomerShop> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Customer Shop'),
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              titleBody(),
-              productViewChanger(),
-              isGridView ? productGridView() : productListView(),
-            ],
-          ),
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          title: const Text('Customer Shop'),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => CustomerCartPage(
-                  listOfProductAddedToCart: addedToCartProducts),
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            // titleBody(),
+            Container(
+              margin: const EdgeInsets.all(8),
+              child: productViewChanger(),
+              decoration: BoxDecoration(
+                // shadow
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 1,
+                    blurRadius: 5,
+                    offset: const Offset(0, 3),
+                  ),
+                ],
+              ),
             ),
-          );
-        },
-        child: const Icon(Icons.shopping_cart_rounded),
-      ),
-    );
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(8),
+                child: isGridView ? productGridView() : productListView(),
+              ),
+            ),
+            Container(
+              height: 50,
+              color: Colors.green,
+            ),
+          ],
+        ),
+        floatingActionButton: Stack(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: FloatingActionButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CustomerCartPage(
+                        listOfProductAddedToCart:
+                            addedToCartProducts, // Make sure this is defined
+                      ),
+                    ),
+                  );
+                },
+                child: const Icon(Icons.shopping_cart_rounded),
+              ),
+            ),
+            if (_itemCount > 0)
+              Positioned(
+                right: 0, // Position relative to the FAB
+                top: 0,
+                child: CircleAvatar(
+                  backgroundColor: Colors.red,
+                  radius: 15,
+                  child: Text(
+                    _itemCount.toString(),
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 12,
+                    ),
+                  ),
+                ),
+              ),
+          ],
+        ));
   }
 
   titleBody() {
@@ -145,48 +217,51 @@ class _CustomerShopState extends State<CustomerShop> {
   }
 
   productViewChanger() {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        Expanded(
-          child: TextFormField(
-            decoration: InputDecoration(
-              labelText: 'Search Product',
-              floatingLabelBehavior: FloatingLabelBehavior.auto,
-              hintText: 'Search Product',
-              hintStyle: const TextStyle(color: Colors.grey),
-              labelStyle: const TextStyle(color: Colors.green),
-              prefixIcon: const Icon(Icons.search),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-                borderSide: const BorderSide(color: Colors.green),
+    return Container(
+      color: Colors.white,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Expanded(
+            child: TextFormField(
+              decoration: InputDecoration(
+                labelText: 'Search Product',
+                floatingLabelBehavior: FloatingLabelBehavior.auto,
+                hintText: 'Search Product',
+                hintStyle: const TextStyle(color: Colors.grey),
+                labelStyle: const TextStyle(color: Colors.green),
+                prefixIcon: const Icon(Icons.search),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: const BorderSide(color: Colors.green),
+                ),
+                hoverColor: Colors.green,
               ),
-              hoverColor: Colors.green,
+              onChanged: (value) {
+                searchProducts(value);
+              },
+              controller: searchController,
             ),
-            onChanged: (value) {
-              searchProducts(value);
-            },
-            controller: searchController,
           ),
-        ),
-        IconButton(
-          onPressed: changeProductsList,
-          icon: Icon(
-            isGridView ? Icons.list : Icons.grid_view,
-            color: Colors.green,
-            size: 30,
+          IconButton(
+            onPressed: changeProductsList,
+            icon: Icon(
+              isGridView ? Icons.list : Icons.grid_view,
+              color: Colors.green,
+              size: 30,
+            ),
           ),
-        ),
-        IconButton(
-          onPressed: sortProductsList,
-          icon: Icon(
-            isGridView ? Icons.sort : Icons.sort_rounded,
-            color: Colors.green,
-            size: 30,
+          IconButton(
+            onPressed: sortProductsList,
+            icon: Icon(
+              isGridView ? Icons.sort : Icons.sort_rounded,
+              color: Colors.green,
+              size: 30,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
@@ -207,7 +282,6 @@ class _CustomerShopState extends State<CustomerShop> {
           )
         : GridView.builder(
             shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
             ),
@@ -258,6 +332,26 @@ class _CustomerShopState extends State<CustomerShop> {
           );
   }
 
+  void _toggleBottomSheet() {
+    setState(() {
+      showBottomSheet = !showBottomSheet;
+    });
+  }
+
+  void _changeItemCount() {
+    setState(() {
+      _itemCount++;
+    });
+  }
+
+  void _decrementCount() {
+    setState(() {
+      if (_itemCount > 0) {
+        _itemCount--;
+      }
+    });
+  }
+
   productListView() {
     return searchedProducts.isEmpty && searchController.text.isNotEmpty
         ? Center(
@@ -302,7 +396,20 @@ class _CustomerShopState extends State<CustomerShop> {
                   trailing: InkWell(
                     onTap: () {
                       setState(() {
-                        addedToCartProducts.add(searchedProducts[index]);
+                        // check if product is already in cart
+                        if (addedToCartProducts
+                            .contains(searchedProducts[index])) {
+                          // remove product from cart
+                          addedToCartProducts.remove(searchedProducts[index]);
+                          _decrementCount();
+                        } else {
+                          // add product to cart
+                          addedToCartProducts.add(searchedProducts[index]);
+                          _changeItemCount();
+                        }
+
+                        // addedToCartProducts.add(searchedProducts[index]);
+                        // _changeItemCount();
                       });
 
                       print(
@@ -312,12 +419,19 @@ class _CustomerShopState extends State<CustomerShop> {
                           'List of products in cart: ${addedToCartProducts.map((product) => product.name).toList()}');
                       // print("list of products in cart: $addedToCartProducts");
                     },
-                    child: CircleAvatar(
-                      child: const Icon(
-                        Icons.add,
-                        color: Colors.white,
-                      ),
-                    ),
+                    child: addedToCartProducts.contains(searchedProducts[index])
+                        ? const CircleAvatar(
+                            child: Icon(
+                              Icons.remove,
+                              color: Colors.white,
+                            ),
+                          )
+                        : const CircleAvatar(
+                            child: const Icon(
+                              Icons.add,
+                              color: Colors.white,
+                            ),
+                          ),
                   ),
                   contentPadding:
                       const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
@@ -335,5 +449,57 @@ class _CustomerShopState extends State<CustomerShop> {
               );
             },
           );
+  }
+}
+
+class _BottomSheetContent extends StatelessWidget {
+  final int itemCount;
+  final VoidCallback onClose;
+  final VoidCallback onIncrement;
+  final VoidCallback onDecrement;
+
+  const _BottomSheetContent({
+    required this.itemCount,
+    required this.onClose,
+    required this.onIncrement,
+    required this.onDecrement,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(20),
+      decoration: const BoxDecoration(
+        color: Colors.white,
+
+        // border line black
+        border: Border(
+          top: BorderSide(color: Colors.black, width: 1),
+        ),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            'Items in Cart: $itemCount',
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              IconButton(
+                  onPressed: onDecrement, icon: const Icon(Icons.remove)),
+              Text(itemCount.toString()),
+              IconButton(onPressed: onIncrement, icon: const Icon(Icons.add)),
+            ],
+          ),
+          ElevatedButton(
+            onPressed: onClose, // Close the bottom sheet
+            child: const Text('Close'),
+          ),
+        ],
+      ),
+    );
   }
 }

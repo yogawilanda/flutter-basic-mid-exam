@@ -30,6 +30,7 @@ class _SpendingListPageState extends State<SpendingListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[100],
       appBar: AppBar(
         title: const Text('Spending List'),
       ),
@@ -117,6 +118,12 @@ class InfographSpendingList extends StatelessWidget {
       (prev, element) => prev + int.parse(element['amount']!.substring(4)),
     );
     return Container(
+      margin: const EdgeInsets.all(8.0),
+      decoration: BoxDecoration(
+        // color: Colors.green[100],
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: Colors.green[800]!),
+      ),
       padding: const EdgeInsets.all(16.0),
       alignment: Alignment.center,
       height: MediaQuery.of(context).size.height * 0.3,

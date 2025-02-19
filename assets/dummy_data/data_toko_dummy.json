@@ -1,0 +1,90 @@
+[
+    {
+      "Tanggal": "2024-05-08",
+      "No_Penjualan": "001",
+      "Jenis_Item": "Kopi Latte",
+      "Jumlah": 2,
+      "Harga_Satuan": 15000,
+      "Total_Harga": 30000
+    },
+    {
+      "Tanggal": "2024-05-08",
+      "No_Penjualan": "002",
+      "Jenis_Item": "Cappuccino",
+      "Jumlah": 1,
+      "Harga_Satuan": 18000,
+      "Total_Harga": 18000
+    },
+    {
+      "Tanggal": "2024-05-08",
+      "No_Penjualan": "003",
+      "Jenis_Item": "Teh Tarik",
+      "Jumlah": 3,
+      "Harga_Satuan": 12000,
+      "Total_Harga": 36000
+    },
+    {
+      "Tanggal": "2024-05-08",
+      "No_Penjualan": "004",
+      "Jenis_Item": "Kopi Hitam",
+      "Jumlah": 1,
+      "Harga_Satuan": 10000,
+      "Total_Harga": 10000
+    },
+    {
+      "Tanggal": "2024-05-08",
+      "No_Penjualan": "005",
+      "Jenis_Item": "Roti Bakar",
+      "Jumlah": 2,
+      "Harga_Satuan": 8000,
+      "Total_Harga": 16000
+    },
+      {
+      "Tanggal": "2024-05-08",
+      "No_Penjualan": "006",
+      "Jenis_Item": "Kopi Latte",
+      "Jumlah": 1,
+      "Harga_Satuan": 15000,
+      "Total_Harga": 15000
+    },
+    {
+      "Tanggal": "2024-05-08",
+      "No_Penjualan": "007",
+      "Jenis_Item": "Cappuccino",
+      "Jumlah": 2,
+      "Harga_Satuan": 18000,
+      "Total_Harga": 36000
+    },
+    {
+      "Tanggal": "2024-05-08",
+      "No_Penjualan": "008",
+      "Jenis_Item": "Teh Manis",
+      "Jumlah": 3,
+      "Harga_Satuan": 5000,
+      "Total_Harga": 15000
+    },
+    {
+      "Tanggal": "2024-05-08",
+      "No_Penjualan": "009",
+      "Jenis_Item": "Kopi Hitam",
+      "Jumlah": 2,
+      "Harga_Satuan": 10000,
+      "Total_Harga": 20000
+    },
+    {
+      "Tanggal": "2024-05-08",
+      "No_Penjualan": "010",
+      "Jenis_Item": "Donat",
+      "Jumlah": 1,
+      "Harga_Satuan": 6000,
+      "Total_Harga": 6000
+    },
+      {
+      "Tanggal": "2024-05-08",
+      "No_Penjualan": "030",
+      "Jenis_Item": "Kopi Latte",
+      "Jumlah": 1,
+      "Harga_Satuan": 15000,
+      "Total_Harga": 15000
+    }
+  ]

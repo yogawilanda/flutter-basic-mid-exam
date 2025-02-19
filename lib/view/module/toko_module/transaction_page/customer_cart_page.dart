@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mid_basic_exam/model/product.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
 class CustomerCartPage extends StatefulWidget {
   const CustomerCartPage({super.key, required this.listOfProductAddedToCart});
 
@@ -24,11 +23,22 @@ class _CustomerCartPageState extends State<CustomerCartPage> {
         title: const Text('Cart List'),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
+        // mainAxisAlignment: MainAxisAlignment.start,
         children: [
           summaryList(totalAmout),
           titleListView(),
-          productListView(),
+          if (widget.listOfProductAddedToCart.isNotEmpty)
+            productListView()
+          else
+            const Center(
+              child: Text(
+                'No product added to cart',
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            )
         ],
       ),
     );

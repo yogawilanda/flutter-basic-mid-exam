@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mid_basic_exam/controller/budgeting_controller.dart';
+import 'package:flutter_mid_basic_exam/view/module/local_notification_example.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -14,6 +15,14 @@ class DashboardBudgetingApp extends StatefulWidget {
 }
 
 class _DashboardBudgetingAppState extends State<DashboardBudgetingApp> {
+  void _sendNotification() {
+    NotificationService.showNotification(
+      id: 1,
+      title: 'Top up berhasil',
+      body: 'Anda berhasil memasukan dana, cek aplikasinya!.',
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final budgetingController = Provider.of<BudgetingController>(context);
@@ -35,6 +44,10 @@ class _DashboardBudgetingAppState extends State<DashboardBudgetingApp> {
             SpendingListCard(balanceToFrontEnd: balanceToFrontEnd),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _sendNotification,
+        child: Icon(Icons.notifications),
       ),
     );
   }
@@ -409,7 +422,7 @@ class SpendingTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: CircleAvatar(
-        backgroundColor: Colors.orange,
+        backgroundColor: Colors.green,
         child: Icon(Icons.shopping_cart, color: Colors.white),
       ),
       title: Text("Spending Name", style: GoogleFonts.poppins(fontSize: 14)),

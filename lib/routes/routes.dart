@@ -8,6 +8,7 @@ import 'package:flutter_mid_basic_exam/view/module/error/error_page.dart';
 import 'package:flutter_mid_basic_exam/view/module/image_picker/media_picker.dart';
 import 'package:flutter_mid_basic_exam/view/module/simple_todo_app/task_list_page.dart';
 import 'package:flutter_mid_basic_exam/view/pages/home/main_app.dart';
+import 'package:flutter_mid_basic_exam/view/pages/menu/menu_view.dart';
 import 'package:flutter_mid_basic_exam/view/widgets/tab_bar_format_navigation.dart';
 
 class AppRoutes {
@@ -55,6 +56,13 @@ class AppRoutes {
         );
       default:
         return _errorRoute();
+        // return MaterialPageRoute(
+        //   builder: (context) => DashboardBudgetingApp(),
+        // );
+
+        // return MaterialPageRoute(
+        //   builder: (context) => MenuView(),
+        // );
     }
   }
 
