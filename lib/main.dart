@@ -12,7 +12,7 @@ import 'package:flutter_mid_basic_exam/view/module/local_notification_example.da
 import 'package:flutter_mid_basic_exam/view/module/pageview_example.dart';
 import 'package:flutter_mid_basic_exam/view/module/simple_todo_app/task_list_page.dart';
 import 'package:flutter_mid_basic_exam/view/module/toko_module/transaction_page/customer_shop.dart';
-import 'package:flutter_mid_basic_exam/view/module/toko_module/dashboard/dashboard_shop_page.dart';
+// import 'package:flutter_mid_basic_exam/view/module/toko_module/dashboard/dashboard_shop_page.dart';
 import 'package:flutter_mid_basic_exam/view/pages/menu/menu_view.dart';
 import 'package:flutter_mid_basic_exam/view/widgets/tab_bar_format_navigation.dart';
 
@@ -55,10 +55,10 @@ class MyApp extends StatelessWidget {
       // home: DashboardBudgetingApp(),
       // home: LoadJSONExample(),
       // home: CustomerShop(), //tampilan customer
-      home : DashboardShopPage(username: "John Doe"), //tampilan toko
+      // home : DashboardShopPage(username: "John Doe"), //tampilan toko
       // home : ApiPage(),
       // home: TabBarFormatNavigation(),
-      // home: MortgageCalculator(),
+      home: MortgageCalculator(),
       // home : PageviewExample(),
       // home : MediaPicker(),
       // home : TaskListScreen(),
