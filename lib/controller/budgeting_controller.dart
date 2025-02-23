@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mid_basic_exam/model/finance/finance_user.dart';
+import 'package:user_mortgage_app/model/finance/finance_user.dart';
 
 class BudgetingController extends ChangeNotifier {
   List<BudgetingModel> budgetList = [];

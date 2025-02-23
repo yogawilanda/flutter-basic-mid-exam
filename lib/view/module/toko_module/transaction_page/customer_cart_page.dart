@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mid_basic_exam/model/product.dart';
+
 import 'package:google_fonts/google_fonts.dart';
+import 'package:user_mortgage_app/model/product.dart';
 
 class CustomerCartPage extends StatefulWidget {
   const CustomerCartPage({super.key, required this.listOfProductAddedToCart});

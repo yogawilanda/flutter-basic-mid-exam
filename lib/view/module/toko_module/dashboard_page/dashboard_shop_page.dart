@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mid_basic_exam/view/module/toko_module/dashboard_page/dashboard_widget/dashboard_body_widget.dart';
+import 'package:user_mortgage_app/view/module/toko_module/dashboard_page/dashboard_widget/dashboard_body_widget.dart';
 
 import '../../budgeting_app/dashboard_budgeting.dart';
 

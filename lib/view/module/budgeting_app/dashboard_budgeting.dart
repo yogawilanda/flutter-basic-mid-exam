@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mid_basic_exam/controller/budgeting_controller.dart';
-import 'package:flutter_mid_basic_exam/view/module/local_notification_example.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:user_mortgage_app/controller/budgeting_controller.dart';
+import 'package:user_mortgage_app/view/module/local_notification_example.dart';
 
 class DashboardBudgetingApp extends StatefulWidget {
   final String? username;

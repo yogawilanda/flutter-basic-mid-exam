@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mid_basic_exam/view/module/bottom_navigation_bar_page.dart';
-import 'package:flutter_mid_basic_exam/view/module/notification_widget_page.dart';
-import 'package:flutter_mid_basic_exam/view/module/page_example_list_page.dart';
-import 'package:flutter_mid_basic_exam/view/pages/auth/login/login_view.dart';
+import 'package:user_mortgage_app/view/module/bottom_navigation_bar_page.dart';
+import 'package:user_mortgage_app/view/module/notification_widget_page.dart';
+import 'package:user_mortgage_app/view/module/page_example_list_page.dart';
+import 'package:user_mortgage_app/view/pages/auth/login/login_view.dart';
+
 
 
 class MenuView extends StatelessWidget {

@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mid_basic_exam/view/module/bottom_navigation_bar_page.dart';
-import 'package:flutter_mid_basic_exam/view/module/budgeting_app/budgeting_add_budget_form.dart';
-import 'package:flutter_mid_basic_exam/view/module/budgeting_app/dashboard_budgeting.dart';
-import 'package:flutter_mid_basic_exam/view/module/budgeting_app/spending_detail.dart';
-import 'package:flutter_mid_basic_exam/view/module/budgeting_app/spending_list.dart';
-import 'package:flutter_mid_basic_exam/view/module/error/error_page.dart';
-import 'package:flutter_mid_basic_exam/view/module/image_picker/media_picker.dart';
-import 'package:flutter_mid_basic_exam/view/module/simple_todo_app/task_list_page.dart';
-import 'package:flutter_mid_basic_exam/view/pages/home/main_app.dart';
-import 'package:flutter_mid_basic_exam/view/pages/menu/menu_view.dart';
-import 'package:flutter_mid_basic_exam/view/widgets/tab_bar_format_navigation.dart';
+import 'package:user_mortgage_app/view/module/bottom_navigation_bar_page.dart';
+import 'package:user_mortgage_app/view/module/budgeting_app/backup_dashboard_budgeting.dart';
+import 'package:user_mortgage_app/view/module/budgeting_app/budgeting_add_budget_form.dart';
+import 'package:user_mortgage_app/view/module/budgeting_app/spending_detail.dart';
+import 'package:user_mortgage_app/view/module/budgeting_app/spending_list.dart';
+import 'package:user_mortgage_app/view/module/error/error_page.dart';
+import 'package:user_mortgage_app/view/module/image_picker/media_picker.dart';
+import 'package:user_mortgage_app/view/module/simple_todo_app/task_list_page.dart';
+import 'package:user_mortgage_app/view/pages/home/main_app.dart';
+import 'package:user_mortgage_app/view/widgets/tab_bar_format_navigation.dart';
+
 
 class AppRoutes {
   static const String dashboardBudgetingApp = '/';

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mid_basic_exam/controller/budgeting_controller.dart';
-import 'package:flutter_mid_basic_exam/view/module/budgeting_app/spending_list.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:user_mortgage_app/controller/budgeting_controller.dart';
+import 'package:user_mortgage_app/view/module/budgeting_app/spending_list.dart';
 
 class DashboardBudgetingApp extends StatefulWidget {
   DashboardBudgetingApp({super.key, this.username});

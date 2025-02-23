@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mid_basic_exam/model/product.dart';
+import 'package:user_mortgage_app/model/product.dart';
 
 class TokoController extends ChangeNotifier {
   List<Product> searchedProducts = [];

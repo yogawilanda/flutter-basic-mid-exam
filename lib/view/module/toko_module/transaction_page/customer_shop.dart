@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mid_basic_exam/model/product.dart';
-import 'package:flutter_mid_basic_exam/view/module/toko_module/transaction_page/customer_cart_page.dart';
-import 'package:flutter_mid_basic_exam/view/module/toko_module/transaction_page/product_details_page.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:user_mortgage_app/model/product.dart';
+import 'package:user_mortgage_app/view/module/toko_module/transaction_page/customer_cart_page.dart';
+import 'package:user_mortgage_app/view/module/toko_module/transaction_page/product_details_page.dart';
 
 class CustomerShop extends StatefulWidget {
   const CustomerShop({super.key});
