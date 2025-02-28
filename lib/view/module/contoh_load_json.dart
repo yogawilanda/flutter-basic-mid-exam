@@ -21,10 +21,6 @@ class _LoadJSONExampleState extends State<LoadJSONExample> {
     final String jsonString =
         await rootBundle.loadString('assets/dummy_data/data_toko_dummy.json');
 
-    // check the data is loaded or not
-    // print(jsonString);
-
-
     // Decode JSON string ke dalam list dynamic
     setState(() {
       // count the data length
@@ -47,7 +43,7 @@ class _LoadJSONExampleState extends State<LoadJSONExample> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              'Data Penjualan $dataLength' ,
+              'Data Penjualan $dataLength',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
           ),
@@ -77,7 +73,7 @@ class _LoadJSONExampleState extends State<LoadJSONExample> {
                         final item = data[index];
                         return Card(
                           margin: EdgeInsets.symmetric(
-                              vertical: 4.0, horizontal: 8.0), // Margin lebih kecil
+                              vertical: 4.0, horizontal: 8.0),
                           child: ListTile(
                             leading: CircleAvatar(
                               child: Icon(Icons.shopping_cart),

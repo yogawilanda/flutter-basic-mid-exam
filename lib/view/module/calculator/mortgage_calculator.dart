@@ -40,7 +40,7 @@ class _MortgageCalculatorState extends State<MortgageCalculator> {
               // Title
               Container(
                 padding: EdgeInsets.all(padding),
-                child: Text(
+                child: Text(  
                   "Kalkulator KPR",
                   style: TextStyle(
                     fontSize: titleFontSize,

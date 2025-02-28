@@ -13,4 +13,13 @@ class LoginController extends ChangeNotifier {
       debugPrint("Email: $email");
     }
   }
+
+  void clearForm() {
+    emailController.clear();
+    passController.clear();
+  }
+
+  void navigateToRegister(BuildContext context) {
+    Navigator.pushNamed(context, '/register');
+  }
 }

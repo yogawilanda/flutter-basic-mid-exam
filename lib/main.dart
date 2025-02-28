@@ -6,6 +6,13 @@ import 'package:user_mortgage_app/routes/routes.dart';
 import 'package:user_mortgage_app/view/module/calculator/sidebar_widget.dart';
 import 'package:user_mortgage_app/view/module/local_notification_example.dart';
 import 'package:user_mortgage_app/view/module/responsive_layout/lib_layout.dart';
+import 'package:user_mortgage_app/view/module/simple_todo_app/task_list_page.dart';
+import 'package:user_mortgage_app/view/module/toko_module/dashboard_page/dashboard_shop_page.dart';
+import 'package:user_mortgage_app/view/module/toko_module/transaction_page/customer_shop.dart';
+import 'package:user_mortgage_app/view/module/toko_module/transaction_page/daily_report_page.dart';
+import 'package:user_mortgage_app/view/module/toko_module/transaction_page/splashscreen.dart';
+import 'package:user_mortgage_app/view/module/toko_module/transaction_page/transaction_success.dart';
+import 'package:user_mortgage_app/view/pages/auth/login/login_view.dart';
 
 import 'constants/theme.dart';
 import 'controller/auth_controller/login_controller.dart';
@@ -40,10 +47,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Hitung',
       debugShowCheckedModeBanner: false,
-      theme: lightTheme,
+      theme: lightTheme(context),
       // home: DashboardBudgetingApp(),
       // home: LoadJSONExample(),
       // home: CustomerShop(), //tampilan customer
+      // home : TransactionDetailsPage(),
+      home: SplashScreen(), //splash screen
+      // home: DailyReportPage(
+      //     report: DailyReport(
+      //         date: DateTime.now(), totalSales: 200000, totalTransactions: 10)),
       // home : DashboardShopPage(username: "John Doe"), //tampilan toko
       // home : ApiPage(),
       // home: TabBarFormatNavigation(),
@@ -54,11 +66,15 @@ class MyApp extends StatelessWidget {
       // home : TaskListScreen(),
       // home : BottomNavigationBarExample(),
       // home : MenuView(),
-      home: MainLayout(
-        desktopLayout: DesktopScreen(),
-        mobileLayout: MobileScreen(),
-        tabletLayout: TabletScreen(),
-      ),
+      // home: LoginView(menu: "Login", useAppBar: false),
+      // home: MainLayout(
+      //   desktopLayout: DesktopScreen(),
+      //   mobileLayout: MobileScreen(
+      //     useWidget: SidebarWidget(title: "Real Estate Utility"),
+      //     isDefaultWidget: true,
+      //   ),
+      //   tabletLayout: TabletScreen(),
+      // ),
       onGenerateRoute: AppRoutes.onGenerateRoute,
     );
   }
