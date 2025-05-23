@@ -37,7 +37,7 @@ class _MortgageCalculatorState extends State<MortgageCalculator> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              // Title
+           
               Container(
                 padding: EdgeInsets.all(padding),
                 child: Text(  
@@ -48,8 +48,6 @@ class _MortgageCalculatorState extends State<MortgageCalculator> {
                   ),
                 ),
               ),
-
-              // Monthly Payment Result
               Container(
                 padding: EdgeInsets.all(padding),
                 child: Column(

@@ -3,19 +3,30 @@ import 'package:flutter/material.dart';
 class TextFieldCustom extends StatelessWidget {
   TextFieldCustom({
     super.key,
-    required this.textHint,
+    this.textHint = 'No hint provided',
     this.controller,
     this.isPassword = false,
+    this.maxLength,
+    this.onChanged,
   });
-  TextEditingController? controller;
-  String textHint;
-  bool isPassword = false;
+
+  final TextEditingController? controller;
+  final String textHint;
+  final bool isPassword;
+  final int? maxLength;
+  final Function(String)? onChanged;
 
   @override
   Widget build(BuildContext context) {
+    // Use the provided controller or create a new one if none is provided
+    final TextEditingController effectiveController =
+        controller ?? TextEditingController();
+
     return TextField(
-      controller: controller ?? TextEditingController(),
+      controller: effectiveController,
       obscureText: isPassword,
+      maxLength: maxLength,
+      onChanged: onChanged, // Pass the callback directly
       decoration: InputDecoration(
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),

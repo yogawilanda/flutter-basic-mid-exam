@@ -8,6 +8,7 @@ import 'package:user_mortgage_app/view/module/local_notification_example.dart';
 import 'package:user_mortgage_app/view/module/responsive_layout/lib_layout.dart';
 import 'package:user_mortgage_app/view/module/simple_todo_app/task_list_page.dart';
 import 'package:user_mortgage_app/view/module/toko_module/dashboard_page/dashboard_shop_page.dart';
+import 'package:user_mortgage_app/view/module/toko_module/product_management_page/add_product_form_page.dart';
 import 'package:user_mortgage_app/view/module/toko_module/transaction_page/customer_shop.dart';
 import 'package:user_mortgage_app/view/module/toko_module/transaction_page/daily_report_page.dart';
 import 'package:user_mortgage_app/view/module/toko_module/transaction_page/splashscreen.dart';
@@ -50,9 +51,10 @@ class MyApp extends StatelessWidget {
       theme: lightTheme(context),
       // home: DashboardBudgetingApp(),
       // home: LoadJSONExample(),
-      // home: CustomerShop(), //tampilan customer
+      home: CustomerShop(), //tampilan customer
       // home : TransactionDetailsPage(),
-      home: SplashScreen(), //splash screen
+      // home: SplashScreen(), //splash screen
+      // home: AddProductFormPage(),
       // home: DailyReportPage(
       //     report: DailyReport(
       //         date: DateTime.now(), totalSales: 200000, totalTransactions: 10)),
